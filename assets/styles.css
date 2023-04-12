@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+:root {
+  --text: black;
+}
+
+body {
+  background-color: #fefefa;
+}
+
+ul li {
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 1rem;
+  color: #ffffff;
+  border-radius: 0.25rem;
+}
