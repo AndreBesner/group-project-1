@@ -138,3 +138,22 @@ body {
     margin-left: -2.5rem;
   }
 }
+
+/* CSS for second HTML page*/
+.logo {
+    height: 50px;
+
+}
+.boxes {
+    padding-top: 50px;
+
+
+}
+.border {
+     border: 5px solid black;
+     border-radius: 20px;
+}
+.card:hover {
+    box-shadow: 5px 5px 10px grey;
+    transition: 1s ease;
+}
