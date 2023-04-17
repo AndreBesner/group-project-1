@@ -38,3 +38,8 @@ function runApi() {
 
 searchForm.addEventListener("submit", runApi)
 
+
+
+// Add JQuery selector to html and have entered data passed on
+let userSearchText = $()
+
