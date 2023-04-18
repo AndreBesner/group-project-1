@@ -36,11 +36,46 @@ function runApi() {
 
 
 
+let unsplashURL = "https://api.unsplash.com/search/photos?page=1&query=lemon&client_id=efCh77xmBOWOmOalj69JqwdI-oGi_pzWGDd7FlXj1Tw";
+
+function getPhotos(data){
+
+    fetch(unsplashURL)
+    .then(function(data){
+        if(!data.ok){
+            console.log("issue try again");
+        }
+        return data.json();
+    })
+    .then(function(data){
+        console.log(data);
+        console.log(data.results[0].urls.thumb);
+    })
+}
+
+
+
+
+
 
 let searchQueryInput = $("#searchQueryInput") // this is where user types their text
 $("#searchQuerySubmit").click(function (e) { // when user clicks search button runs function
   e.preventDefault(); // stops page refresh
   console.log(e); // irrelevant
   console.log(searchQueryInput.val().trim()) // this takes user entered text and cuts off junk from end
+  // here we would pass on searchQueryInput.val().trim() to function
+  getPhotos(searchQueryInput.val().trim());
+  
+  // the function for danials code
+  // 
   searchQueryInput.val(""); // empties the text box
 });
+
+// $("#searchQuerySubmit").keydown(function (e) { 
+//   if(e.keyCode === 13){
+//     e.preventDefault(); // stops page refresh
+//     console.log(e); // irrelevant
+//     console.log(searchQueryInput.val().trim()) // this takes user entered text and cuts off junk from end
+//     searchQueryInput.val(""); // empties the text box
+//   }
+// });
