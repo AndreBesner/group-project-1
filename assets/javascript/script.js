@@ -37,9 +37,10 @@ function runApi() {
 
 
 
-let searchQueryInput = $("#searchQueryInput")
-$("#searchQuerySubmit").click(function (e) { 
-  e.preventDefault();
-  console.log(e);
-  console.log(searchQueryInput.val())
+let searchQueryInput = $("#searchQueryInput") // this is where user types their text
+$("#searchQuerySubmit").click(function (e) { // when user clicks search button runs function
+  e.preventDefault(); // stops page refresh
+  console.log(e); // irrelevant
+  console.log(searchQueryInput.val().trim()) // this takes user entered text and cuts off junk from end
+  searchQueryInput.val(""); // empties the text box
 });
