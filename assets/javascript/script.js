@@ -2,7 +2,7 @@
 // var inputEl = document.querySelector("#search-field")//this is gonna be the bar where they type in
 // var searchType = document.querySelector("#search-select")
 
-// var ingredient = inputEl.value || "lemon"
+// var ingredient = inputEl.value
 // var apiKey = "718caf0218dc49d49623438be5859ba7";
 // var complexUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
 // var ingredientsSearch = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredient}`;
