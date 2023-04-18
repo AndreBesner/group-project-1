@@ -127,6 +127,8 @@ searchForm.addEventListener("submit", async (event) => {
   const searchQuery = document.querySelector("#searchQueryInput").value;
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
+  window.location.href = "index1.html";
 });
+
 
 
