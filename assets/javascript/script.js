@@ -98,45 +98,41 @@ async function getRecipes(searchQuery) {
 //TRY AND CHANGE THIS DISPLAY SO IT GOES INTO THE CARD DISPLAY AND PAGE 2
 // Function to display recipe information in the UI
 function displayRecipes(recipes) {
-  const resultsContainer = document.querySelector("#resultsContainer");
+  const resultsContainer = document.querySelector(".resultsContainer");
   resultsContainer.innerHTML = "";
 
   if (recipes.length === 0) {
     resultsContainer.innerHTML = "<p>No results found.</p>";
     return;
   }
-  recipes.forEach(recipe => {
-    const recipeCard = document.createElement("div");
-    recipeCard.classList.add("card-section");
 
-    const image = document.createElement("img");
-    image.src = recipe.image;
-    image.alt = recipe.title;
-    recipeCard.appendChild(image);
-
-    const title = document.createElement("h3");
-    title.textContent = recipe.title;
-    recipeCard.appendChild(title);
-
-    const link = document.createElement("a");
-    link.href = recipe.sourceUrl;
-    link.target = "_blank";
-    link.textContent = "View Recipe";
-    recipeCard.appendChild(link);
-
-    resultsContainer.appendChild(recipeCard);
+  const recipeCards = recipes.map((recipe) => {
+    const recipeCard = `
+      <div class="recipeCard">
+        <img src="${recipe.image}" alt="${recipe.title}" />
+        <h3>${recipe.title}</h3>
+        <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+      </div>
+    `;
+    return recipeCard;
   });
+
+  resultsContainer.innerHTML = recipeCards.join("");
 }
 
-  
+function getAndDisplayRecipes(){
+  getRecipes()
+  displayRecipes()
+};
+
 // Event listener for form submission
 const searchForm = document.querySelector("#searchForm");
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const searchQuery = document.querySelector("#searchQueryInput").value;
   const recipes = await getRecipes(searchQuery);
-  window.location.href = "index1.html";
-  displayRecipes(recipes);
+  
+  window.location.href = "recipe-results.html";
   
 });
 
