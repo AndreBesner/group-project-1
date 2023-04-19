@@ -120,6 +120,11 @@ function displayRecipes(recipes) {
   resultsContainer.innerHTML = recipeCards.join("");
 }
 
+function getAndDisplayRecipes(){
+  getRecipes()
+  displayRecipes()
+};
+
 // Event listener for form submission
 const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
@@ -129,6 +134,9 @@ searchForm.addEventListener("submit", async (event) => {
   displayRecipes(recipes);
   window.location.href = "index1.html"; // moves user to next page
 });
+
+// the idea will be to not run any function for second page until data is passed to it thru url 
+// the second index html file has the script for the functions right there init
 
 
 
