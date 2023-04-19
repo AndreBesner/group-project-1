@@ -81,11 +81,9 @@
 // // });
 
 // Function to fetch recipe data from Spoonacular API based on user's search query
-
 async function getRecipes(searchQuery) {
   const apiKey = "718caf0218dc49d49623438be5859ba7";
   const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}`;
-
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -100,12 +98,14 @@ async function getRecipes(searchQuery) {
 function displayRecipes(recipes) {
   const resultsContainer = document.querySelector(".resultsContainer");
   resultsContainer.innerHTML = "";
-
+  // Error handling if no recipes returned
+  // THIS IS WHERE FUNCTION CALL FOR ANDRE'S CODE SHOULD BE IMPLEMENTED SO WE DONT DISPLAY RANDOM PHOTOS LOL
   if (recipes.length === 0) {
     resultsContainer.innerHTML = "<p>No results found.</p>";
     return;
   }
 
+  // This code is what actually takes the data and prints it to page elements
   const recipeCards = recipes.map((recipe) => {
     const recipeCard = `
       <div class="recipeCard">
@@ -121,13 +121,13 @@ function displayRecipes(recipes) {
 }
 
 // Event listener for form submission
-const searchForm = document.querySelector("#searchForm");
+const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const searchQuery = document.querySelector("#searchQueryInput").value;
+  const searchQuery = document.querySelector("#searchQueryInput").value; // this is the actual text the user has typed
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
-  window.location.href = "index1.html";
+  window.location.href = "index1.html"; // moves user to next page
 });
 
 
