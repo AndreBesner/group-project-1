@@ -11,7 +11,7 @@
 
 body {
   background-color: #fefefa;
-  background-image: url(./Images/ales-krivec-QnNqGoCnBg0-unsplash.jpg);
+  background-image: url(../Images/ales-krivec-QnNqGoCnBg0-unsplash.jpg);
   background-size: cover;
   font-family: "Nunito", sans-serif;
   height: 100%;
@@ -20,7 +20,7 @@ body {
 
 @media (max-width: 768px) {
   body {
-    background-image: url(./Images/tiramisu.jpeg);
+    background-image: url(../Images/tiramisu.jpeg);
     background-size: cover;
     background-position: top;
     color: whitesmoke;

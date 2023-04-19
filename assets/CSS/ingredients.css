@@ -19,7 +19,7 @@ body {
 
 @media (max-width: 768px) {
   body {
-    background-image: url(./Images/tiramisu.jpeg);
+    background-image: url(../Images/tiramisu.jpeg);
     background-size: cover;
     background-position: top;
     color: whitesmoke;
