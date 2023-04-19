@@ -107,7 +107,7 @@ function displayRecipes(recipes) {
   }
   recipes.forEach(recipe => {
     const recipeCard = document.createElement("div");
-    recipeCard.classList.add("recipeCard");
+    recipeCard.classList.add("card-section");
 
     const image = document.createElement("img");
     image.src = recipe.image;
