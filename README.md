@@ -4,7 +4,7 @@
 
 Introducing Flavor Fusion, your go-to recipe website for satisfying your cravings and making the most of your ingredients! With our innovative search feature, you can find delicious recipes tailored to your specific cravings or based on the ingredients you have on hand. From savory to sweet, breakfast to dinner, we have a vast collection of recipes to suit every taste bud.
 
-The link to the deployed page -
+The link to the deployed page - https://andrebesner.github.io/group-project-1-flavour-fusion/
 
 - [WEBSITE](#WEBSITE)
 - [Usage](#usage)
@@ -16,7 +16,7 @@ The link to the deployed page -
 
 The following animation shows the web application's appearance and functionality:
 
-![portfolio demo](./Assets/multiple-choice-quiz.gif)
+![portfolio demo](Link needs to be placed here)
 
 ## Usage
 
