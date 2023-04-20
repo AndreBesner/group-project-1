@@ -134,6 +134,8 @@ searchForm.addEventListener("submit", async (event) => {
   displayRecipes(recipes);
   // window.location.href = "index1.html"; // moves user to next page
   getIngredientPhoto(searchQuery); // this calls the unsplash api call
+  //clear the text box
+  // code to go here
 });
 
 
