@@ -120,6 +120,12 @@ function displayRecipes(recipes) {
   resultsContainer.innerHTML = recipeCards.join("");
 }
 
+//data being saved to local storage
+function saveDataToLocalStorage(searchQuery, recipes) {
+  localStorage.setItem("searchQuery", searchQuery);
+  localStorage.setItem("recipes", JSON.stringify(recipes));
+}
+
 function getAndDisplayRecipes(){
   getRecipes()
   displayRecipes()
