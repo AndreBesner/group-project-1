@@ -132,11 +132,32 @@ searchForm.addEventListener("submit", async (event) => {
   const searchQuery = document.querySelector("#searchQueryInput").value; // this is the actual text the user has typed
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
-  window.location.href = "index1.html"; // moves user to next page
+  // window.location.href = "index1.html"; // moves user to next page
+  getPhotos(searchQuery); // this calls the unsplash api call
 });
 
-// the idea will be to not run any function for second page until data is passed to it thru url 
-// the second index html file has the script for the functions right there init
+
+// This is the function that calls unsplash to display a photo of the ingredient
+// the user has searched
+
+function getPhotos(data){
+  let unsplashURL = "https://api.unsplash.com/search/photos?page=1&query=";
+  let searchPhotoURL = unsplashURL + data + "&client_id=efCh77xmBOWOmOalj69JqwdI-oGi_pzWGDd7FlXj1Tw";
+
+    fetch(searchPhotoURL)
+    .then(function(data){
+        if(!data.ok){
+            console.log("issue try again");
+        }
+        return data.json();
+    })
+    .then(function(data){
+        console.log(data);
+        console.log(data.results[0].urls.thumb);
+    })
+}
+
+
 
 
 
