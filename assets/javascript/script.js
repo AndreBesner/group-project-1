@@ -126,6 +126,12 @@ function saveDataToLocalStorage(searchQuery, recipes) {
   localStorage.setItem("recipes", JSON.stringify(recipes));
 }
 
+function getDataFromLocalStorage() {
+  const searchQuery = localStorage.getItem("searchQuery");
+  const recipes = JSON.parse(localStorage.getItem("recipes"));
+  return { searchQuery, recipes };
+}
+
 function getAndDisplayRecipes(){
   getRecipes()
   displayRecipes()
