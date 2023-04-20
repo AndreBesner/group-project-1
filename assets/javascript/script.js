@@ -133,14 +133,14 @@ searchForm.addEventListener("submit", async (event) => {
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
   // window.location.href = "index1.html"; // moves user to next page
-  getPhotos(searchQuery); // this calls the unsplash api call
+  getIngredientPhoto(searchQuery); // this calls the unsplash api call
 });
 
 
 // This is the function that calls unsplash to display a photo of the ingredient
 // the user has searched
 
-function getPhotos(data){
+function getIngredientPhoto(data){
   let unsplashURL = "https://api.unsplash.com/search/photos?page=1&query=";
   let searchPhotoURL = unsplashURL + data + "&client_id=efCh77xmBOWOmOalj69JqwdI-oGi_pzWGDd7FlXj1Tw";
 
@@ -154,6 +154,15 @@ function getPhotos(data){
     .then(function(data){
         console.log(data);
         console.log(data.results[0].urls.thumb);
+        //print this information to page
+        let ingredientPhotoDiv = $("#ingredientPhotoDiv");
+        let makeImage = document.createElement("img")
+        // we need image alt
+        makeImage.src = data.results[0].urls.thumb;
+        // we need image source 
+        makeImage.alt = data.results[0].alt_description;
+        // append image to ingred photo div
+        ingredientPhotoDiv.append(makeImage);
     })
 }
 
