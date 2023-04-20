@@ -207,7 +207,7 @@ footer {
   margin: auto;
   margin-top: auto;
   margin-bottom: auto;
-  box-shadow: 7px 10px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 768px) {
