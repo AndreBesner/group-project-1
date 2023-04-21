@@ -81,11 +81,9 @@
 // // });
 
 // Function to fetch recipe data from Spoonacular API based on user's search query
-
 async function getRecipes(searchQuery) {
   const apiKey = "718caf0218dc49d49623438be5859ba7";
   const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}`;
-
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -100,33 +98,96 @@ async function getRecipes(searchQuery) {
 function displayRecipes(recipes) {
   const resultsContainer = document.querySelector(".resultsContainer");
   resultsContainer.innerHTML = "";
-
+  // Error handling if no recipes returned
+  // THIS IS WHERE FUNCTION CALL FOR ANDRE'S CODE SHOULD BE IMPLEMENTED SO WE DONT DISPLAY RANDOM PHOTOS LOL
   if (recipes.length === 0) {
     resultsContainer.innerHTML = "<p>No results found.</p>";
     return;
   }
 
-  const recipeCards = recipes.map((recipe) => {
-    const recipeCard = `
-      <div class="recipeCard">
-        <img src="${recipe.image}" alt="${recipe.title}" />
-        <h3>${recipe.title}</h3>
-        <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+  const recipeCards = recipes.map((recipe, index) => {
+    if (index % 5 === 0) {
+      return `
+      <div class="row">
+        <div class="col-md-2">
+          <div class="card border">
+            <img src="${recipe.image}" alt="${recipe.title}" />
+            <div class="card-section">
+              <h2>${recipe.title}</h2>
+              <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if ((index + 1) % 5 === 0 || index + 1 === recipes.length) {
+      return `
+        <div class="col-md-2">
+          <div class="card border">
+            <img src="${recipe.image}" alt="${recipe.title}" />
+            <div class="card-section">
+              <h2>${recipe.title}</h2>
+              <<a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+            </div>
+          </div>
+        </div>
       </div>
-    `;
-    return recipeCard;
+      `;
+    } else {
+      return `
+        <div class="col-md-2">
+          <div class="card border">
+            <img src="${recipe.image}" alt="${recipe.title}" />
+            <div class="card-section">
+              <h2>${recipe.title}</h2>
+              <<a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
   });
-
+  
   resultsContainer.innerHTML = recipeCards.join("");
+
+  // const recipeCards = recipes.map((recipe) => {
+  //   const recipeCard = `
+  //   <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+  //     <div class="cell">
+  //       <div class="card border">
+  //         <img src="${recipe.image}" alt="${recipe.title}" />
+  //         <div class="card-section">
+  //           <h2>${recipe.title}</h2>
+  //           <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+  //         </div>
+  //     </div>
+  //   </div>
+  //   `;
+  //   return recipeCard;
+  // });
+
+  // resultsContainer.innerHTML = recipeCards.join("");
 }
 
+function getAndDisplayRecipes(){
+  getRecipes()
+  displayRecipes()
+};
+
 // Event listener for form submission
-const searchForm = document.querySelector("#searchForm");
+const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const searchQuery = document.querySelector("#searchQueryInput").value;
+  const searchQuery = document.querySelector("#searchQueryInput").value; // this is the actual text the user has typed
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
+  // window.location.href = "index1.html";
 });
 
 
+
+// </div>
+// <div class="recipeCard">
+//   <img src="${recipe.image}" alt="${recipe.title}" />
+//   <h3>${recipe.title}</h3>
+//   <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+// </div>
