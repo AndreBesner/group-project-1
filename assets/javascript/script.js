@@ -168,6 +168,18 @@ function displayRecipes(recipes) {
   // resultsContainer.innerHTML = recipeCards.join("");
 }
 
+//data being saved to local storage
+function saveDataToLocalStorage(searchQuery, recipes) {
+  localStorage.setItem("searchQuery", searchQuery);
+  localStorage.setItem("recipes", JSON.stringify(recipes));
+}
+
+function getDataFromLocalStorage() {
+  const searchQuery = localStorage.getItem("searchQuery");
+  const recipes = JSON.parse(localStorage.getItem("recipes"));
+  return { searchQuery, recipes };
+}
+
 function getAndDisplayRecipes(){
   getRecipes()
   displayRecipes()
