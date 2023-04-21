@@ -34,10 +34,10 @@ To cook the recipe, follow the provided cooking instructions and use the listed 
 
 ## Credits
 
-https://unsplash.com/ </br>
-https://spoonacular.com/food-api </br>
-https://get.foundation/ </br>
-https://www.w3schools.com/ </br>
+[Unsplash](https://unsplash.com/) </br>
+[Spoonacular](https://spoonacular.com/food-api) </br>
+[Foundation](https://get.foundation/) </br>
+[W3Schools](https://www.w3schools.com/ )</br>
 
 ## Team
 
