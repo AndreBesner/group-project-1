@@ -106,18 +106,67 @@ function displayRecipes(recipes) {
     return;
   }
 
-  const recipeCards = recipes.map((recipe) => {
-    const recipeCard = `
-      <div class="recipeCard">
-        <img src="${recipe.image}" alt="${recipe.title}" />
-        <h3>${recipe.title}</h3>
-        <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+  const recipeCards = recipes.map((recipe, index) => {
+    if (index % 5 === 0) {
+      return `
+      <div class="row">
+        <div class="col-md-2">
+          <div class="card border">
+            <img src="${recipe.image}" alt="${recipe.title}" />
+            <div class="card-section">
+              <h2>${recipe.title}</h2>
+              <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if ((index + 1) % 5 === 0 || index + 1 === recipes.length) {
+      return `
+        <div class="col-md-2">
+          <div class="card border">
+            <img src="${recipe.image}" alt="${recipe.title}" />
+            <div class="card-section">
+              <h2>${recipe.title}</h2>
+              <<a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+            </div>
+          </div>
+        </div>
       </div>
-    `;
-    return recipeCard;
+      `;
+    } else {
+      return `
+        <div class="col-md-2">
+          <div class="card border">
+            <img src="${recipe.image}" alt="${recipe.title}" />
+            <div class="card-section">
+              <h2>${recipe.title}</h2>
+              <<a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
   });
-
+  
   resultsContainer.innerHTML = recipeCards.join("");
+
+  // const recipeCards = recipes.map((recipe) => {
+  //   const recipeCard = `
+  //   <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+  //     <div class="cell">
+  //       <div class="card border">
+  //         <img src="${recipe.image}" alt="${recipe.title}" />
+  //         <div class="card-section">
+  //           <h2>${recipe.title}</h2>
+  //           <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+  //         </div>
+  //     </div>
+  //   </div>
+  //   `;
+  //   return recipeCard;
+  // });
+
+  // resultsContainer.innerHTML = recipeCards.join("");
 }
 
 // Event listener for form submission
@@ -127,8 +176,14 @@ searchForm.addEventListener("submit", async (event) => {
   const searchQuery = document.querySelector("#searchQueryInput").value;
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
-  window.location.href = "index1.html";
+  // window.location.href = "index1.html";
 });
 
 
 
+// </div>
+// <div class="recipeCard">
+//   <img src="${recipe.image}" alt="${recipe.title}" />
+//   <h3>${recipe.title}</h3>
+//   <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+// </div>
