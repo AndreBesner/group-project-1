@@ -194,6 +194,7 @@ searchForm.addEventListener("submit", async (event) => {
   displayRecipes(recipes);
   getIngredientPhoto(searchQuery);
   // window.location.href = "index1.html";
+  document.querySelector("#searchQueryInput").value = "" ;
 });
 
 
