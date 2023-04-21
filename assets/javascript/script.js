@@ -120,6 +120,11 @@ function displayRecipes(recipes) {
   resultsContainer.innerHTML = recipeCards.join("");
 }
 
+function getAndDisplayRecipes(){
+  getRecipes()
+  displayRecipes()
+};
+
 // Event listener for form submission
 const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
@@ -127,8 +132,46 @@ searchForm.addEventListener("submit", async (event) => {
   const searchQuery = document.querySelector("#searchQueryInput").value; // this is the actual text the user has typed
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
-  window.location.href = "index1.html"; // moves user to next page
+  // window.location.href = "index1.html"; // moves user to next page
+  getIngredientPhoto(searchQuery); // this calls the unsplash api call
+  //clear the text box
+  // code to go here
 });
+
+
+// This is the function that calls unsplash to display a photo of the ingredient
+// the user has searched
+
+function getIngredientPhoto(data){
+  let unsplashURL = "https://api.unsplash.com/search/photos?page=1&query=";
+  let searchPhotoURL = unsplashURL + data + "&client_id=efCh77xmBOWOmOalj69JqwdI-oGi_pzWGDd7FlXj1Tw";
+
+    fetch(searchPhotoURL)
+    .then(function(data){
+        if(!data.ok){
+            console.log("issue try again");
+        }
+        return data.json();
+    })
+    .then(function(data){
+        console.log(data);
+        console.log(data.results[0].urls.thumb);
+        //print this information to page
+        let ingredientPhotoDiv = $("#ingredientPhotoDiv"); // selector for where photo of ingredient will live
+        let makeDiv = $("<div>").text("Here are some receipes including: "); // this div contains the text of what the user searched
+        let makeImage = document.createElement("img"); 
+        // we need image alt
+        makeImage.alt = data.results[0].alt_description;
+        // we need image source 
+        makeImage.src = data.results[0].urls.thumb;
+        // append text of user search 
+        ingredientPhotoDiv.append(makeDiv);
+        // append image to ingred photo div
+        ingredientPhotoDiv.append(makeImage);
+    })
+}
+
+
 
 
 
