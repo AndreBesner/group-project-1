@@ -194,6 +194,7 @@ searchForm.addEventListener("submit", async (event) => {
   displayRecipes(recipes);
   getIngredientPhoto(searchQuery);
   // window.location.href = "index1.html";
+  document.querySelector("#searchQueryInput").value = "" ;
 });
 
 
@@ -216,6 +217,7 @@ function getIngredientPhoto(data){
         console.log(data.results[0].urls.thumb);
         //print this information to page
         let ingredientPhotoDiv = $("#ingredientPhotoDiv"); // selector for where photo of ingredient will live
+        ingredientPhotoDiv.empty();
         let makeDiv = $("<div>").text("Here are some receipes including: "); // this div contains the text of what the user searched
         let makeImage = document.createElement("img"); 
         // we need image alt
