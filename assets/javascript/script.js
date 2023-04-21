@@ -157,12 +157,15 @@ function getIngredientPhoto(data){
         console.log(data);
         console.log(data.results[0].urls.thumb);
         //print this information to page
-        let ingredientPhotoDiv = $("#ingredientPhotoDiv");
-        let makeImage = document.createElement("img")
+        let ingredientPhotoDiv = $("#ingredientPhotoDiv"); // selector for where photo of ingredient will live
+        let makeDiv = $("<div>").text("Here are some receipes including: "); // this div contains the text of what the user searched
+        let makeImage = document.createElement("img"); 
         // we need image alt
-        makeImage.src = data.results[0].urls.thumb;
-        // we need image source 
         makeImage.alt = data.results[0].alt_description;
+        // we need image source 
+        makeImage.src = data.results[0].urls.thumb;
+        // append text of user search 
+        ingredientPhotoDiv.append(makeDiv);
         // append image to ingred photo div
         ingredientPhotoDiv.append(makeImage);
     })
