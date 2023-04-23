@@ -93,7 +93,6 @@ async function getRecipes(searchQuery) {
   }
 }
 
-//TRY AND CHANGE THIS DISPLAY SO IT GOES INTO THE CARD DISPLAY AND PAGE 2
 // Function to display recipe information in the UI
 function displayRecipes(recipes) {
   const resultsContainer = document.querySelector(".resultsContainer");
@@ -218,7 +217,8 @@ function getIngredientPhoto(data){
         //print this information to page
         let ingredientPhotoDiv = $("#ingredientPhotoDiv"); // selector for where photo of ingredient will live
         ingredientPhotoDiv.empty();
-        let makeDiv = $("<div>").text("Here are some receipes including: "); // this div contains the text of what the user searched
+        let makeDiv = $("<div>"); // this div contains the text of what the user searched
+        makeDiv.addClass("column")
         let makeImage = document.createElement("img"); 
         // we need image alt
         makeImage.alt = data.results[0].alt_description;
