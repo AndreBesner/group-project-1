@@ -188,8 +188,8 @@ function printLastSearches(){
     let makeDiv = document.createElement("div");
     let makeText = document.createElement("p");
     makeText.textContent = searchArray[i];
-    makeDiv.appendChild(textContent);
-    previousSearches.appendChild(makeDiv);
+    makeDiv.append(makeText);
+    previousSearches.append(makeDiv);
     // here i will make it clickable after
 
   }
@@ -202,6 +202,14 @@ const searchForm = document.querySelector("#searchForm"); // this is the form wi
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const searchQuery = document.querySelector("#searchQueryInput").value; // this is the actual text the user has typed
+  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [] ;
+  searchArray.push(searchQuery);
+  //delete previous searches once array is 5 entries long
+  if(searchArray.length > 5){
+    searchArray.shift();
+  }
+  localStorage.setItem("searchArray", JSON.stringify(searchArray));
+  printLastSearches();
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
   getIngredientPhoto(searchQuery);
