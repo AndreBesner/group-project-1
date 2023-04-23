@@ -18,43 +18,28 @@ searchForm.addEventListener("submit", async (event) => {
   document.querySelector("#searchQueryInput").value = ""; // empties the user typed text box and readies for next search
 });
 
-// CODE FOR LOCAL STORAGE
-let previousSearches = $("#previous-searches");
+//This is the code for creating a clickable row of the last 5 previous searches
+//It starts with an empty div that has flex display, then makes 5 sub divs with their own respectice <a>
+//Using foundation it will look pretty, when the user clicks one of the divs it will run our main functions
+let previousSearches = $("#previous-searches"); //empty div
 function printLastSearches() {
-  previousSearches.empty();
-  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [];
+  previousSearches.empty(); //ensures it's empty
+  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || []; //this code is similar to above, it looks for array and if not creates one
   for (let i = searchArray.length - 1; i >= 0; i--) {
     let makeDiv = document.createElement("div");
     let makeText = document.createElement("a");
-    makeText.classList.add("button");
-    makeText.textContent = searchArray[i];
+    makeText.classList.add("button"); //this is for the foundation css styles
+    makeText.textContent = searchArray[i]; //adds the text to the clickable entry from our array we made
     makeDiv.append(makeText);
     previousSearches.append(makeDiv);
-    // here i will make it clickable after
     makeText.addEventListener("click", async (e) => {
-      // run next function with (makeText.textContent)
-      // getRecipes(makeText.textContent);
       getIngredientPhoto(makeText.textContent);
       const recipes = await getRecipes(makeText.textContent);
       displayRecipes(recipes);
     });
   }
 }
-
-printLastSearches();
-
-// Function to fetch recipe data from Spoonacular API based on user's search query
-async function getRecipes(searchQuery) {
-  const apiKey = "718caf0218dc49d49623438be5859ba7";
-  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}`;
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.error(error);
-  }
-}
+printLastSearches(); //ensure this function always runs on page load 
 
 // This is the function that calls unsplash to display a photo of the ingredient
 // the user has searched
@@ -97,6 +82,18 @@ function getIngredientPhoto(data) {
     });
 }
 
+// Function to fetch recipe data from Spoonacular API based on user's search query
+async function getRecipes(searchQuery) {
+  const apiKey = "718caf0218dc49d49623438be5859ba7";
+  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error(error);
+  }
+}
 // Function to display recipe information in the UI
 function displayRecipes(recipes) {
   const resultsContainer = document.querySelector(".resultsContainer");
