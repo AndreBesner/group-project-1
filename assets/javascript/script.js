@@ -93,7 +93,6 @@ async function getRecipes(searchQuery) {
   }
 }
 
-//TRY AND CHANGE THIS DISPLAY SO IT GOES INTO THE CARD DISPLAY AND PAGE 2
 // Function to display recipe information in the UI
 function displayRecipes(recipes) {
   const resultsContainer = document.querySelector(".resultsContainer");
@@ -108,8 +107,8 @@ function displayRecipes(recipes) {
   const recipeCards = recipes.map((recipe, index) => {
     if (index % 5 === 0) {
       return `
-      <div class="row">
-        <div class="col-md-2">
+      <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+        <div class="cell">
           <div class="card border">
             <img src="${recipe.image}" alt="${recipe.title}" />
             <div class="card-section">
@@ -121,7 +120,7 @@ function displayRecipes(recipes) {
       `;
     } else if ((index + 1) % 5 === 0 || index + 1 === recipes.length) {
       return `
-        <div class="col-md-2">
+        <div class="cell">
           <div class="card border">
             <img src="${recipe.image}" alt="${recipe.title}" />
             <div class="card-section">
@@ -134,7 +133,7 @@ function displayRecipes(recipes) {
       `;
     } else {
       return `
-        <div class="col-md-2">
+        <div class="cell">
           <div class="card border">
             <img src="${recipe.image}" alt="${recipe.title}" />
             <div class="card-section">
@@ -180,11 +179,6 @@ function getDataFromLocalStorage() {
   return { searchQuery, recipes };
 }
 
-function getAndDisplayRecipes(){
-  getRecipes()
-  displayRecipes()
-};
-
 // Event listener for form submission
 const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
@@ -218,12 +212,17 @@ function getIngredientPhoto(data){
         //print this information to page
         let ingredientPhotoDiv = $("#ingredientPhotoDiv"); // selector for where photo of ingredient will live
         ingredientPhotoDiv.empty();
-        let makeDiv = $("<div>").text("Here are some receipes including: "); // this div contains the text of what the user searched
+        let makeDiv = $("<div>"); // this div contains the text of what the user searched
+        makeDiv.addClass("column")
         let makeImage = document.createElement("img"); 
         // we need image alt
         makeImage.alt = data.results[0].alt_description;
         // we need image source 
         makeImage.src = data.results[0].urls.thumb;
+        //ensure image will always be same width and height
+        makeImage.style.width = "300px";
+        makeImage.style.height = "300px";
+        makeImage.style.objectFit = "cover";
         // append text of user search 
         ingredientPhotoDiv.append(makeDiv);
         // append image to ingred photo div
