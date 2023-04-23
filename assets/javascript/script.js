@@ -4,10 +4,10 @@ const searchForm = document.querySelector("#searchForm"); // this is the form wi
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const searchQuery = document.querySelector("#searchQueryInput").value; // this is the actual text the user has typed
-  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [] ;
+  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [];
   searchArray.push(searchQuery);
   //delete previous searches once array is 5 entries long
-  if(searchArray.length > 5){
+  if (searchArray.length > 5) {
     searchArray.shift();
   }
   localStorage.setItem("searchArray", JSON.stringify(searchArray));
@@ -16,15 +16,15 @@ searchForm.addEventListener("submit", async (event) => {
   displayRecipes(recipes);
   getIngredientPhoto(searchQuery);
   // window.location.href = "index1.html";
-  document.querySelector("#searchQueryInput").value = "" ;
+  document.querySelector("#searchQueryInput").value = "";
 });
 
 // CODE FOR LOCAL STORAGE
-let previousSearches = $("#previous-searches")
-function printLastSearches(){
+let previousSearches = $("#previous-searches");
+function printLastSearches() {
   previousSearches.empty();
-  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [] ;
-  for(let i = searchArray.length - 1 ; i >= 0 ; i--){
+  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [];
+  for (let i = searchArray.length - 1; i >= 0; i--) {
     let makeDiv = document.createElement("div");
     let makeText = document.createElement("a");
     makeText.classList.add("button");
@@ -32,13 +32,13 @@ function printLastSearches(){
     makeDiv.append(makeText);
     previousSearches.append(makeDiv);
     // here i will make it clickable after
-    makeText.addEventListener("click", async (e)=>{
+    makeText.addEventListener("click", async (e) => {
       // run next function with (makeText.textContent)
       // getRecipes(makeText.textContent);
       getIngredientPhoto(makeText.textContent);
       const recipes = await getRecipes(makeText.textContent);
       displayRecipes(recipes);
-    })
+    });
   }
 }
 
@@ -60,39 +60,42 @@ async function getRecipes(searchQuery) {
 // This is the function that calls unsplash to display a photo of the ingredient
 // the user has searched
 
-function getIngredientPhoto(data){
+function getIngredientPhoto(data) {
   let unsplashURL = "https://api.unsplash.com/search/photos?page=1&query=";
-  let searchPhotoURL = unsplashURL + data + "&client_id=efCh77xmBOWOmOalj69JqwdI-oGi_pzWGDd7FlXj1Tw";
+  let searchPhotoURL =
+    unsplashURL +
+    data +
+    "&client_id=efCh77xmBOWOmOalj69JqwdI-oGi_pzWGDd7FlXj1Tw";
 
-    fetch(searchPhotoURL)
-    .then(function(data){
-        if(!data.ok){
-            console.log("issue try again");
-        }
-        return data.json();
+  fetch(searchPhotoURL)
+    .then(function (data) {
+      if (!data.ok) {
+        console.log("issue try again");
+      }
+      return data.json();
     })
-    .then(function(data){
-        console.log(data);
-        console.log(data.results[0].urls.thumb);
-        //print this information to page
-        let ingredientPhotoDiv = $("#ingredientPhotoDiv"); // selector for where photo of ingredient will live
-        ingredientPhotoDiv.empty();
-        let makeDiv = $("<div>"); // this div contains the text of what the user searched
-        makeDiv.addClass("column")
-        let makeImage = document.createElement("img"); 
-        // we need image alt
-        makeImage.alt = data.results[0].alt_description;
-        // we need image source 
-        makeImage.src = data.results[0].urls.thumb;
-        //ensure image will always be same width and height
-        makeImage.style.width = "300px";
-        makeImage.style.height = "300px";
-        makeImage.style.objectFit = "cover";
-        // append text of user search 
-        ingredientPhotoDiv.append(makeDiv);
-        // append image to ingred photo div
-        ingredientPhotoDiv.append(makeImage);
-    })
+    .then(function (data) {
+      console.log(data);
+      console.log(data.results[0].urls.thumb);
+      //print this information to page
+      let ingredientPhotoDiv = $("#ingredientPhotoDiv"); // selector for where photo of ingredient will live
+      ingredientPhotoDiv.empty();
+      let makeDiv = $("<div>"); // this div contains the text of what the user searched
+      makeDiv.addClass("column");
+      let makeImage = document.createElement("img");
+      // we need image alt
+      makeImage.alt = data.results[0].alt_description;
+      // we need image source
+      makeImage.src = data.results[0].urls.thumb;
+      //ensure image will always be same width and height
+      makeImage.style.width = "300px";
+      makeImage.style.height = "300px";
+      makeImage.style.objectFit = "cover";
+      // append text of user search
+      ingredientPhotoDiv.append(makeDiv);
+      // append image to ingred photo div
+      ingredientPhotoDiv.append(makeImage);
+    });
 }
 
 // Function to display recipe information in the UI
