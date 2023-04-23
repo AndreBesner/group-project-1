@@ -1,22 +1,21 @@
-// Event listener for form submission
-// THIS IS WHERE USER TYPES RECEIPE DATA IN
+//This is the section where the user enters their desired search query
+//The program asks for an ingredient, or general recipe, and the user will enter text in form and hit enter key
 const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+  event.preventDefault(); // stops page refresh
   const searchQuery = document.querySelector("#searchQueryInput").value; // this is the actual text the user has typed
-  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [];
-  searchArray.push(searchQuery);
-  //delete previous searches once array is 5 entries long
+  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || []; // we get local storage array ready or create a new one
+  searchArray.push(searchQuery); // adds the text to the local storage "searchArray" array
+  //code to delete previous searches once array is 5 entries long
   if (searchArray.length > 5) {
-    searchArray.shift();
+    searchArray.shift(); // removes oldest entry
   }
   localStorage.setItem("searchArray", JSON.stringify(searchArray));
-  printLastSearches();
-  const recipes = await getRecipes(searchQuery);
+  printLastSearches(); // makes call to printLastSearches function as now there will be entry present
+  const recipes = await getRecipes(searchQuery); //this was a pain to realize i needed to use await w rafee and danials code
   displayRecipes(recipes);
   getIngredientPhoto(searchQuery);
-  // window.location.href = "index1.html";
-  document.querySelector("#searchQueryInput").value = "";
+  document.querySelector("#searchQueryInput").value = ""; // empties the user typed text box and readies for next search
 });
 
 // CODE FOR LOCAL STORAGE
