@@ -214,3 +214,8 @@ h3 {
   text-align: center;
   font-size: large;
 }
+
+#previous-searches{
+  display: flex;
+}
+
