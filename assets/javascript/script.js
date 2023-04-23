@@ -186,12 +186,19 @@ function printLastSearches(){
   let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [] ;
   for(let i = searchArray.length - 1 ; i >= 0 ; i--){
     let makeDiv = document.createElement("div");
-    let makeText = document.createElement("p");
+    let makeText = document.createElement("a");
+    makeText.classList.add("button");
     makeText.textContent = searchArray[i];
     makeDiv.append(makeText);
     previousSearches.append(makeDiv);
     // here i will make it clickable after
-
+    makeText.addEventListener("click", async (e)=>{
+      // run next function with (makeText.textContent)
+      // getRecipes(makeText.textContent);
+      getIngredientPhoto(makeText.textContent);
+      const recipes = await getRecipes(makeText.textContent);
+      displayRecipes(recipes);
+    })
   }
 }
 printLastSearches();
