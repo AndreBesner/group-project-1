@@ -33,24 +33,24 @@ function printLastSearches() {
     makeDiv.append(makeText);
     previousSearches.append(makeDiv);
     makeText.addEventListener("click", async (e) => {
-      getIngredientPhoto(makeText.textContent);
-      const recipes = await getRecipes(makeText.textContent);
+      getIngredientPhoto(makeText.textContent); //passes on text to getIngredientPhoto function
+      //uses aray function to pass on the text content to getRecipes function
+      const recipes = await getRecipes(makeText.textContent);  
       displayRecipes(recipes);
     });
   }
 }
 printLastSearches(); //ensure this function always runs on page load 
 
-// This is the function that calls unsplash to display a photo of the ingredient
-// the user has searched
-
+//This is the function for one of our two API calls
+//When the user enters an ingredient, or general recipe idea, this function will display a correposing photo to the user's search text.
+//This uses the free unsplash photo API (https://unsplash.com/developers)
 function getIngredientPhoto(data) {
   let unsplashURL = "https://api.unsplash.com/search/photos?page=1&query=";
   let searchPhotoURL =
     unsplashURL +
     data +
     "&client_id=efCh77xmBOWOmOalj69JqwdI-oGi_pzWGDd7FlXj1Tw";
-
   fetch(searchPhotoURL)
     .then(function (data) {
       if (!data.ok) {
@@ -82,7 +82,9 @@ function getIngredientPhoto(data) {
     });
 }
 
-// Function to fetch recipe data from Spoonacular API based on user's search query
+//This is the function for one of our two API calls
+//When the user enters an ingredient, or general recipe idea, this function will display corresponding popular recipe ideas
+//This uses the free spoonacular recipe API (https://spoonacular.com/food-api)
 async function getRecipes(searchQuery) {
   const apiKey = "718caf0218dc49d49623438be5859ba7";
   const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}`;
@@ -94,6 +96,7 @@ async function getRecipes(searchQuery) {
     console.error(error);
   }
 }
+
 // Function to display recipe information in the UI
 function displayRecipes(recipes) {
   const resultsContainer = document.querySelector(".resultsContainer");
@@ -104,7 +107,7 @@ function displayRecipes(recipes) {
     resultsContainer.innerHTML = "<p>No results found.</p>";
     return;
   }
-
+  //The following code take the data passed back from spoonacular and arranges it into rows of cards 
   const recipeCards = recipes.map((recipe, index) => {
     if (index % 5 === 0) {
       return `
