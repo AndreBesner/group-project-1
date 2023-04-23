@@ -108,8 +108,8 @@ function displayRecipes(recipes) {
   const recipeCards = recipes.map((recipe, index) => {
     if (index % 5 === 0) {
       return `
-      <div class="row">
-        <div class="col-md-2">
+      <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+        <div class="cell">
           <div class="card border">
             <img src="${recipe.image}" alt="${recipe.title}" />
             <div class="card-section">
@@ -121,7 +121,7 @@ function displayRecipes(recipes) {
       `;
     } else if ((index + 1) % 5 === 0 || index + 1 === recipes.length) {
       return `
-        <div class="col-md-2">
+        <div class="cell">
           <div class="card border">
             <img src="${recipe.image}" alt="${recipe.title}" />
             <div class="card-section">
@@ -134,7 +134,7 @@ function displayRecipes(recipes) {
       `;
     } else {
       return `
-        <div class="col-md-2">
+        <div class="cell">
           <div class="card border">
             <img src="${recipe.image}" alt="${recipe.title}" />
             <div class="card-section">
