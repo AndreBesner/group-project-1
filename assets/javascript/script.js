@@ -100,9 +100,8 @@ async function getRecipes(searchQuery) {
 // Function to display recipe information in the UI
 function displayRecipes(recipes) {
   const resultsContainer = document.querySelector(".resultsContainer");
-  resultsContainer.innerHTML = "";
+  resultsContainer.innerHTML = ""; // clears the previous results
   // Error handling if no recipes returned
-  // THIS IS WHERE FUNCTION CALL FOR ANDRE'S CODE SHOULD BE IMPLEMENTED SO WE DONT DISPLAY RANDOM PHOTOS LOL
   if (recipes.length === 0) {
     resultsContainer.innerHTML = "<p>No results found.</p>";
     return;
