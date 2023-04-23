@@ -86,7 +86,8 @@ function getIngredientPhoto(data) {
 //When the user enters an ingredient, or general recipe idea, this function will display corresponding popular recipe ideas
 //This uses the free spoonacular recipe API (https://spoonacular.com/food-api)
 async function getRecipes(searchQuery) {
-  const apiKey = "718caf0218dc49d49623438be5859ba7";
+  // const apiKey = "718caf0218dc49d49623438be5859ba7"; // Rafee/Danials key
+  const apiKey = "dd9b157a9b824a0282b9c785cadaebfc"
   const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}`;
   try {
     const response = await fetch(apiUrl);
