@@ -179,11 +179,6 @@ function getDataFromLocalStorage() {
   return { searchQuery, recipes };
 }
 
-function getAndDisplayRecipes(){
-  getRecipes()
-  displayRecipes()
-};
-
 // Event listener for form submission
 const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
