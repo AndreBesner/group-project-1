@@ -167,23 +167,56 @@ function displayRecipes(recipes) {
   // resultsContainer.innerHTML = recipeCards.join("");
 }
 
-//data being saved to local storage
-function saveDataToLocalStorage(searchQuery, recipes) {
-  localStorage.setItem("searchQuery", searchQuery);
-  localStorage.setItem("recipes", JSON.stringify(recipes));
-}
+// //data being saved to local storage
+// function saveDataToLocalStorage(searchQuery, recipes) {
+//   localStorage.setItem("searchQuery", searchQuery);
+//   localStorage.setItem("recipes", JSON.stringify(recipes));
+// }
 
-function getDataFromLocalStorage() {
-  const searchQuery = localStorage.getItem("searchQuery");
-  const recipes = JSON.parse(localStorage.getItem("recipes"));
-  return { searchQuery, recipes };
+// function getDataFromLocalStorage() {
+//   const searchQuery = localStorage.getItem("searchQuery");
+//   const recipes = JSON.parse(localStorage.getItem("recipes"));
+//   return { searchQuery, recipes };
+// }
+
+// CODE FOR LOCAL STORAGE
+let previousSearches = $("#previous-searches")
+function printLastSearches(){
+  previousSearches.empty();
+  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [] ;
+  for(let i = searchArray.length - 1 ; i >= 0 ; i--){
+    let makeDiv = document.createElement("div");
+    let makeText = document.createElement("a");
+    makeText.classList.add("button");
+    makeText.textContent = searchArray[i];
+    makeDiv.append(makeText);
+    previousSearches.append(makeDiv);
+    // here i will make it clickable after
+    makeText.addEventListener("click", async (e)=>{
+      // run next function with (makeText.textContent)
+      // getRecipes(makeText.textContent);
+      getIngredientPhoto(makeText.textContent);
+      const recipes = await getRecipes(makeText.textContent);
+      displayRecipes(recipes);
+    })
+  }
 }
+printLastSearches();
 
 // Event listener for form submission
+// THIS IS WHERE USER TYPES RECEIPE DATA IN
 const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const searchQuery = document.querySelector("#searchQueryInput").value; // this is the actual text the user has typed
+  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [] ;
+  searchArray.push(searchQuery);
+  //delete previous searches once array is 5 entries long
+  if(searchArray.length > 5){
+    searchArray.shift();
+  }
+  localStorage.setItem("searchArray", JSON.stringify(searchArray));
+  printLastSearches();
   const recipes = await getRecipes(searchQuery);
   displayRecipes(recipes);
   getIngredientPhoto(searchQuery);
