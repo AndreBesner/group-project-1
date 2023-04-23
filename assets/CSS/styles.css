@@ -217,5 +217,7 @@ h3 {
 
 #previous-searches{
   display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }
 
