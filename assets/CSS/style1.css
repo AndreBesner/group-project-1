@@ -192,3 +192,7 @@ footer {
   padding-bottom: 10px;
   color: antiquewhite;
 }
+
+#previous-searches{
+  display: flex;
+}

@@ -167,19 +167,37 @@ function displayRecipes(recipes) {
   // resultsContainer.innerHTML = recipeCards.join("");
 }
 
-//data being saved to local storage
-function saveDataToLocalStorage(searchQuery, recipes) {
-  localStorage.setItem("searchQuery", searchQuery);
-  localStorage.setItem("recipes", JSON.stringify(recipes));
-}
+// //data being saved to local storage
+// function saveDataToLocalStorage(searchQuery, recipes) {
+//   localStorage.setItem("searchQuery", searchQuery);
+//   localStorage.setItem("recipes", JSON.stringify(recipes));
+// }
 
-function getDataFromLocalStorage() {
-  const searchQuery = localStorage.getItem("searchQuery");
-  const recipes = JSON.parse(localStorage.getItem("recipes"));
-  return { searchQuery, recipes };
+// function getDataFromLocalStorage() {
+//   const searchQuery = localStorage.getItem("searchQuery");
+//   const recipes = JSON.parse(localStorage.getItem("recipes"));
+//   return { searchQuery, recipes };
+// }
+
+// CODE FOR LOCAL STORAGE
+let previousSearches = $("#previous-searches")
+function printLastSearches(){
+  previousSearches.empty();
+  let searchArray = JSON.parse(localStorage.getItem("searchArray")) || [] ;
+  for(let i = searchArray.length - 1 ; i >= 0 ; i--){
+    let makeDiv = document.createElement("div");
+    let makeText = document.createElement("p");
+    makeText.textContent = searchArray[i];
+    makeDiv.appendChild(textContent);
+    previousSearches.appendChild(makeDiv);
+    // here i will make it clickable after
+
+  }
 }
+printLastSearches();
 
 // Event listener for form submission
+// THIS IS WHERE USER TYPES RECEIPE DATA IN
 const searchForm = document.querySelector("#searchForm"); // this is the form with the submit event attached
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
