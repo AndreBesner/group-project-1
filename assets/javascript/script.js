@@ -224,6 +224,10 @@ function getIngredientPhoto(data){
         makeImage.alt = data.results[0].alt_description;
         // we need image source 
         makeImage.src = data.results[0].urls.thumb;
+        //ensure image will always be same width and height
+        makeImage.style.width = "300px";
+        makeImage.style.height = "300px";
+        makeImage.style.objectFit = "cover";
         // append text of user search 
         ingredientPhotoDiv.append(makeDiv);
         // append image to ingred photo div
