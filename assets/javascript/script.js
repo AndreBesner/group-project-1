@@ -28,7 +28,7 @@ function printLastSearches() {
   for (let i = searchArray.length - 1; i >= 0; i--) {
     let makeDiv = document.createElement("div");
     let makeText = document.createElement("a");
-    makeText.classList.add("button"); //this is for the foundation css styles
+    makeText.classList.add("button", "expanded"); //this is for the foundation css styles
     makeText.textContent = searchArray[i]; //adds the text to the clickable entry from our array we made
     makeDiv.append(makeText);
     previousSearches.append(makeDiv);
