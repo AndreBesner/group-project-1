@@ -16,7 +16,7 @@ The link to the deployed page - https://andrebesner.github.io/group-project-1-fl
 
 The following animation shows the web application's appearance and functionality:
 
-![portfolio demo](./assets/Images/demo.gif)
+![portfolio demo](./assets/Images/demofinal.gif)
 
 ## Usage
 
