@@ -35,12 +35,12 @@ function printLastSearches() {
     makeText.addEventListener("click", async (e) => {
       getIngredientPhoto(makeText.textContent); //passes on text to getIngredientPhoto function
       //uses aray function to pass on the text content to getRecipes function
-      const recipes = await getRecipes(makeText.textContent);  
+      const recipes = await getRecipes(makeText.textContent);
       displayRecipes(recipes);
     });
   }
 }
-printLastSearches(); //ensure this function always runs on page load 
+printLastSearches(); //ensure this function always runs on page load
 
 //This is the function for one of our two API calls
 //When the user enters an ingredient, or general recipe idea, this function will display a correposing photo to the user's search text.
@@ -87,7 +87,7 @@ function getIngredientPhoto(data) {
 //This uses the free spoonacular recipe API (https://spoonacular.com/food-api)
 async function getRecipes(searchQuery) {
   // const apiKey = "718caf0218dc49d49623438be5859ba7"; // Rafee/Danials key
-  const apiKey = "dd9b157a9b824a0282b9c785cadaebfc"
+  const apiKey = "dd9b157a9b824a0282b9c785cadaebfc";
   const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&addRecipeInformation=true`;
   try {
     const response = await fetch(apiUrl);
@@ -107,7 +107,7 @@ function displayRecipes(recipes) {
     resultsContainer.innerHTML = "<p>No results found.</p>";
     return;
   }
-  //The following code take the data passed back from spoonacular and arranges it into rows of cards 
+  //The following code take the data passed back from spoonacular and arranges it into rows of cards
   const recipeCards = recipes.map((recipe, index) => {
     if (index % 5 === 0) {
       return `
@@ -129,7 +129,7 @@ function displayRecipes(recipes) {
             <img src="${recipe.image}" alt="${recipe.title}" />
             <div class="card-section">
               <h2>${recipe.title}</h2>
-              <<a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+              <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ function displayRecipes(recipes) {
             <img src="${recipe.image}" alt="${recipe.title}" />
             <div class="card-section">
               <h2>${recipe.title}</h2>
-              <<a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
+              <a href="${recipe.sourceUrl}" target="_blank">View Recipe</a>
             </div>
           </div>
         </div>
