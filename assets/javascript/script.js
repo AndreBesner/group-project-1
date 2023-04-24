@@ -88,7 +88,7 @@ function getIngredientPhoto(data) {
 async function getRecipes(searchQuery) {
   // const apiKey = "718caf0218dc49d49623438be5859ba7"; // Rafee/Danials key
   const apiKey = "dd9b157a9b824a0282b9c785cadaebfc"
-  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}`;
+  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchQuery}&addRecipeInformation=true`;
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -111,7 +111,7 @@ function displayRecipes(recipes) {
   const recipeCards = recipes.map((recipe, index) => {
     if (index % 5 === 0) {
       return `
-      <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+      <div class="grid-x grid-margin-x small-up-2 medium-up-3">
         <div class="cell">
           <div class="card border">
             <img src="${recipe.image}" alt="${recipe.title}" />
