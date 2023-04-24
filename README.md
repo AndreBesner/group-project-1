@@ -32,7 +32,7 @@ On the recipe page, you'll find detailed information about the recipe, including
 4.  Cook Recipe
 To cook the recipe, follow the provided cooking instructions and use the listed ingredients to prepare the dish.
 
-#Photo of website
+## Photo of website
 ![Screenshot_4](https://user-images.githubusercontent.com/126214677/233881839-50154cc9-8343-4923-8fd6-c849f1b5b2f1.png)
 
 ## Credits
