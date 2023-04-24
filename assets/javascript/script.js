@@ -111,7 +111,7 @@ function displayRecipes(recipes) {
   const recipeCards = recipes.map((recipe, index) => {
     if (index % 5 === 0) {
       return `
-      <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+      <div class="grid-x grid-margin-x small-up-2 medium-up-3">
         <div class="cell">
           <div class="card border">
             <img src="${recipe.image}" alt="${recipe.title}" />
