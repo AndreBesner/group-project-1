@@ -1,73 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flavor Fusion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/CSS/reset.css" />
+    <link rel="stylesheet" href="assets/CSS/styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flavor Fusion</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
-    crossorigin="anonymous" />
-  <link rel="stylesheet" href="assets/CSS/reset.css" />
-  <link rel="stylesheet" href="assets/CSS/styles.css" />
-</head>
-
-<body>
-
-  <!-- Header exists here -->
-  <div class="top-bar">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li><img src="./assets/Images/Logo.png" class="logo" /></li>
-        <li class="menu-text">FLAVOR FUSION</li>
-      </ul>
-    </div>
-    <div class="top-bar-right">
-      <ul class="menu">
-        <!-- this link will bring user to outside recipe site -->
-        <li><a href="https://www.allrecipes.com/recipes/">Recipe</a></li>
-        <!-- this link wil bring user to ingredient substituions page -->
-        <li><a href="./Ingredients.html">Ingredients</a></li>
-        <!-- this link will bring user to recipe hacks page -->
-        <li><a href="./hacks.html">Hacks</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Search bar for main page exists here -->
-  <div class="wrapper">
-    <div class="herotext">Find Your Recipe Here:</div>
-    <form id="searchForm" class="searchBar">
-      <!--changed into form submission -rafee -->
-      <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Type your cravings here!"
-        value="" />
-    </form>
-    <!-- this is going to be a flex box row that has 5 divs with the previous searches -->
-    <div id="previous-searches">
-      <!-- there will be 5 clickable divs here of the previous searches -->
-    </div>
-    <!-- the is section for picuture of what user has searches -->
-    <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-      <div class="cell text-center">
-        <div id="ingredientPhotoDiv" class="card border" style="width: 300px">
-          <!-- photo goes here -->
-        </div>
+  <body>
+    <!-- Header exists here -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li><img src="./assets/Images/Logo.png" class="logo" /></li>
+          <li class="menu-text">FLAVOR FUSION</li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <!-- this link will bring user to outside recipe site -->
+          <li><a href="https://www.allrecipes.com/recipes/">Recipe</a></li>
+          <!-- this link wil bring user to ingredient substituions page -->
+          <li><a href="./Ingredients.html">Ingredients</a></li>
+          <!-- this link will bring user to recipe hacks page -->
+          <li><a href="./hacks.html">Hacks</a></li>
+        </ul>
       </div>
     </div>
-    <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-      <div class="resultsContainer"></div>
-      <!--This is where the recipe cards will live when user hits enter-->
+
+    <!-- Search bar for main page exists here -->
+    <div class="wrapper">
+      <div class="herotext">Find Your Recipe Here:</div>
+      <form id="searchForm" class="searchBar">
+        <!--changed into form submission -rafee -->
+        <input
+          id="searchQueryInput"
+          type="text"
+          name="searchQueryInput"
+          placeholder="Type your cravings here!"
+          value=""
+        />
+      </form>
+      <!-- this is going to be a flex box row that has 5 divs with the previous searches -->
+      <div id="previous-searches">
+        <!-- there will be 5 clickable divs here of the previous searches -->
+      </div>
+      <!-- the is section for picuture of what user has searches -->
+      <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+        <div class="cell text-center">
+          <div id="ingredientPhotoDiv" class="card border" style="width: 300px">
+            <!-- photo goes here -->
+          </div>
+        </div>
+      </div>
+      <div class="grid-x grid-margin-x small-up-2 medium-up-3">
+        <div class="resultsContainer"></div>
+        <!--This is where the recipe cards will live when user hits enter-->
+      </div>
     </div>
-  </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"
-    crossorigin="anonymous"></script>
-  <script src="assets/javascript/script.js"></script>
-</body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/javascript/script.js"></script>
+  </body>
 </html>
